@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-dic-2018 21:50:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Profesores" table="PROFESORES" schema="IES" optimistic-lock="version">
+        <id name="ccodprof" type="string">
+            <column name="CCODPROF" length="13" />
+            <generator class="assigned" />
+        </id>
+        <property name="cnomprof" type="string">
+            <column name="CNOMPROF" length="100" not-null="true" />
+        </property>
+        <property name="departam" type="string">
+            <column name="DEPARTAM" length="100" not-null="true" />
+        </property>
+        <set name="asignaturases" table="ASIGNATURAS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CCODPROF" length="13" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Asignaturas" />
+        </set>
+    </class>
+</hibernate-mapping>

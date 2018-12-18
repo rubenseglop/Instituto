@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-dic-2018 21:50:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Expedientes" table="EXPEDIENTES" schema="IES" optimistic-lock="version">
+        <composite-id name="id" class="modelo.ExpedientesId">
+            <key-property name="ccodalu" type="string">
+                <column name="CCODALU" length="13" />
+            </key-property>
+            <key-property name="ccodasig" type="string">
+                <column name="CCODASIG" length="13" />
+            </key-property>
+            <key-property name="curso" type="string">
+                <column name="CURSO" length="9" />
+            </key-property>
+            <key-property name="evaluac" type="string">
+                <column name="EVALUAC" length="1" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="asignaturas" class="modelo.Asignaturas" update="false" insert="false" fetch="select">
+            <column name="CCODASIG" length="13" not-null="true" />
+        </many-to-one>
+        <many-to-one name="alumnos" class="modelo.Alumnos" update="false" insert="false" fetch="select">
+            <column name="CCODALU" length="13" not-null="true" />
+        </many-to-one>
+        <property name="nota" type="big_decimal">
+            <column name="NOTA" precision="5" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-dic-2018 21:50:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Usuarios" table="USUARIOS" schema="IES" optimistic-lock="version">
+        <id name="ccodusu" type="string">
+            <column name="CCODUSU" length="13" />
+            <generator class="assigned" />
+        </id>
+        <property name="cnomusu" type="string">
+            <column name="CNOMUSU" length="100" not-null="true" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="TIPO" length="1" not-null="true" />
+        </property>
+        <property name="psw" type="string">
+            <column name="PSW" length="9" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

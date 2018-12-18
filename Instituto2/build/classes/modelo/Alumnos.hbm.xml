@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-dic-2018 21:50:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Alumnos" table="ALUMNOS" schema="IES" optimistic-lock="version">
+        <id name="ccodalu" type="string">
+            <column name="CCODALU" length="13" />
+            <generator class="assigned" />
+        </id>
+        <property name="cnomalu" type="string">
+            <column name="CNOMALU" length="100" not-null="true" />
+        </property>
+        <property name="curso" type="string">
+            <column name="CURSO" length="9" not-null="true" />
+        </property>
+        <set name="asignaturases" table="MATRICULAS" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="CCODALU" length="13" not-null="true" />
+            </key>
+            <many-to-many entity-name="modelo.Asignaturas">
+                <column name="CCODASIG" length="13" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="expedienteses" table="EXPEDIENTES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CCODALU" length="13" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Expedientes" />
+        </set>
+    </class>
+</hibernate-mapping>
